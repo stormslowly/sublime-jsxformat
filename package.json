@@ -1,0 +1,15 @@
+{
+  "name": "JsxFormat",
+  "version": "0.1.0",
+  "description": "jsxformat-sublime",
+  "main": "cmd.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "pshu",
+  "license": "BSD-2-Clause",
+  "dependencies": {
+    "esformatter-jsx": "~1.0.8",
+    "esformatter": "~0.5.1"
+  }
+}
