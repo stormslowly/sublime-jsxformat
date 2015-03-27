@@ -19,10 +19,8 @@ class JsxFormatCommand(sublime_plugin.TextCommand):
 		code = self.view.substr(region)
 
 		try:
-			p = subprocess.Popen(['node',formatScript],stdin=subprocess.PIPE,stdout=subprocess.PIPE,stderr=subprocess.PIPE ,shell=True)
-			formatedCode,err = p.communicate(input=code.encode('utf-8'))
-
-			print(formatedCode.decode('utf-8'),err)
+			child = subprocess.Popen(['node',formatScript],stdin=subprocess.PIPE,stdout=subprocess.PIPE,stderr=subprocess.PIPE ,shell=True)
+			formatedCode,err = child.communicate(input=code.encode('utf-8'))
 			if err:
 				sublime.status_message('esformat filed');
 				return
@@ -38,3 +36,23 @@ class JsxFormatCommand(sublime_plugin.TextCommand):
 		finally:
 			pass
 
+def is_jsx(view):
+	fName = view.file_name()
+	vSettings = view.settings()
+	syntaxPath = vSettings.get('syntax')
+	syntax = ""
+	ext = ""
+
+	if (fName != None):
+		ext = os.path.splitext(fName)[1][1:]
+	if(syntaxPath != None):
+		syntax = os.path.splitext(syntaxPath)[0].split('/')[-1].lower()
+	return ext in ['jsx', 'JSX'] or "jsx" in syntax
+
+class JsxFormatEventListeners(sublime_plugin.EventListener):
+	@staticmethod
+	def on_pre_save_async(view):
+		if is_jsx(view):
+			view.run_command("jsx_format");
+		else:
+			print('JSXFormat','byebye');
