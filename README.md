@@ -1,11 +1,30 @@
 Sublime JsxFormat
 ===
-
 a simple tool to format JSX in Sublime Text.
+
+## Install(manaully)
+
+You can locate your Sublime Text Packages directory, using the menu item `Preferences -> Browse Packages....`
+
+`cd` to  that `package` folder,
+
+```
+https://github.com/stormslowly/sublime-jsxformat JsxFormat
+cd JsxFormat
+npm i
+```
+
+enjoy!~~
+
 
 ## how to use
 
-`ctrl+shift+p' then type `format JSX`.
+`ctrl+shift+p` then type `format JSX`.
+
+### or
+
+Save  the `JSX` file will trigger foramt
+
 
 
 ## Thanks
@@ -22,4 +41,5 @@ the merge tool
 
 ## Todo
 
-* format after save
+* add configure files
+* publish to <https://packagecontrol.io/>
